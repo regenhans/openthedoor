@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Open Garage - An IoT experiment</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div class="center">
+<div class="content">
+	<h2>Bienvenid@ a HackerGarage</h2>
+	</br>
+	<button onclick="httpGetAsync()">Abrir</button>
+</div>
+
+</div>
+</body>
+<script type="text/javascript">
+function httpGetAsync() {
+	var http = new XMLHttpRequest();
+	var url = "https://api.particle.io/v1/devices/2e003d001147333438353733/open";
+	var params = "command=openSesame&access_token=24cd1e55ef39620e6bdd64acfcffd244e3847f2c";
+	http.open("POST", url, true);
+
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+		if(http.readyState == 4 && http.status == 200) {
+			console.log(http.responseText);
+		}
+	}
+	http.send(params);
+}
+
+
+</script>
+</html>
