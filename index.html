@@ -11,9 +11,9 @@
 	<h2>Bienvenid@ a HackerGarage</h2>
 	<br>
 	<br>
-	<!-- <h3>Ingresa Contraseña</h3> -->
-	<!-- <br> -->
-		<!-- <input id="secret" type="text" name="key"> -->
+	<h3>Ingresa Contraseña</h3>
+	<br>
+		<input id="secret" type="text" name="key">
 		</br>
 		<button onclick="openTheDoor()">Abrir</button>
 		<!-- <button onclick="test()">Abrir</button> -->
@@ -34,10 +34,10 @@
 // }
 
 function openTheDoor() {
-
+	var key = document.getElementById('secret').value;
 	var http = new XMLHttpRequest();
 	var url = "https://api.particle.io/v1/devices/2e003d001147333438353733/open";
-	var params = "command=openSesame&access_token=24cd1e55ef39620e6bdd64acfcffd244e3847f2c";
+	var params = "command="+key+"&access_token=24cd1e55ef39620e6bdd64acfcffd244e3847f2c";
 	http.open("POST", url, true);
 
 	//Send the proper header information along with the request
